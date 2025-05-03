@@ -5,65 +5,35 @@
  
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --background: 210 33% 96%;
+    --foreground: 0 0% 13%;
+ 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 13%;
  
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 13%;
  
-    --primary: 267 79% 75%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 122 56% 46%;
+    --primary-foreground: 0 0% 98%;
  
-    --secondary: 267 29% 54%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 122 41% 39%;
+    --secondary-foreground: 0 0% 98%;
  
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 33% 96%;
+    --muted-foreground: 0 0% 46%;
  
-    --accent: 96 91% 94%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 210 33% 96%;
+    --accent-foreground: 0 0% 13%;
  
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 267 79% 75%;
+    --destructive: 0 73% 58%;
+    --destructive-foreground: 0 0% 98%;
+ 
+    --border: 210 33% 96%;
+    --input: 210 33% 96%;
+    --ring: 122 56% 46%;
  
     --radius: 0.5rem;
-  }
- 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
- 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
- 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
- 
-    --primary: 267 79% 75%;
-    --primary-foreground: 222.2 47.4% 11.2%;
- 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
- 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
- 
-    --accent: 96 91% 94%;
-    --accent-foreground: 210 40% 98%;
- 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 267 79% 75%;
   }
 }
  
@@ -72,10 +42,35 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#F0F4F8] text-[#212121];
   }
 }
 
-.hover-scale {
-  @apply transition-transform duration-200 hover:scale-105;
+.chart-container {
+  height: 300px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    height: 200px;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f4f8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c2c8cc;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a5abaf;
 }

@@ -54,14 +54,15 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Добавляем цвета для эко-офиса
+        // Эко офис цвета
         eco: {
-          light: "#F2FCE2", // Светло-зеленый
-          purple: "#9b87f5", // Основной фиолетовый
-          purpleDark: "#6E59A5", // Темный фиолетовый
-          lavender: "#E5DEFF", // Лавандовый
-          dark: "#1A1F2C", // Темный для текста
-          gray: "#403E43", // Серый для текста
+          background: "#F0F4F8",
+          primary: "#4CAF50",
+          darkGreen: "#388E3C",
+          text: "#212121",
+          textSecondary: "#757575",
+          error: "#F44336",
+          white: "#FFFFFF",
         }
       },
       borderRadius: {

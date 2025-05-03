@@ -1,119 +1,204 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Icon from "@/components/ui/icon";
+import Sidebar from "@/components/ui/Sidebar";
+import { StatCard, EventLog } from "@/components/ui/Dashboard";
+
+const mockEvents = [
+  { id: 1, time: "Сегодня, 10:23", description: "Температура в Офисе 1 достигла оптимального значения", type: "success" as const },
+  { id: 2, time: "Сегодня, 09:15", description: "Устройство 'Умный термостат' подключено", type: "info" as const },
+  { id: 3, time: "Вчера, 18:42", description: "Превышение лимита потребления в Офисе 2", type: "warning" as const },
+  { id: 4, time: "Вчера, 16:30", description: "Ошибка синхронизации с датчиком CO₂", type: "error" as const },
+];
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-[#F2FCE2]">
-      {/* Hero section */}
-      <header className="bg-gradient-to-r from-[#E5DEFF] to-[#F2FCE2] py-16">
-        <div className="container mx-auto px-4">
-          <h1 className="text-5xl font-bold text-[#1A1F2C] mb-4">ЭкоОфис</h1>
-          <p className="text-xl text-[#403E43] max-w-2xl mb-8">
-            Современные решения для создания экологичного и устойчивого рабочего пространства
-          </p>
-          <Button className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white">
-            Узнать больше
-          </Button>
+    <div className="min-h-screen bg-[#F0F4F8] flex">
+      <Sidebar />
+      
+      <div className="flex-1 md:ml-64 p-4 md:p-6">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+          <div>
+            <h1 className="text-2xl font-bold text-[#212121]">Эко Офис - Обзор</h1>
+            <p className="text-[#757575]">Панель мониторинга и управления</p>
+          </div>
+          <div className="mt-4 md:mt-0">
+            <Button className="bg-[#4CAF50] hover:bg-[#388E3C] text-white">
+              <Icon name="Plus" size={16} className="mr-2" />
+              Новое действие
+            </Button>
+          </div>
         </div>
-      </header>
-
-      {/* Benefits section */}
-      <section className="py-16 container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-[#1A1F2C]">
-          Преимущества эко-офиса
-        </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card className="p-6 hover-scale">
-            <div className="mb-4 text-[#9b87f5]">
-              <Icon name="Leaf" size={48} />
-            </div>
-            <h3 className="text-xl font-bold mb-2">Забота о природе</h3>
-            <p className="text-[#403E43]">
-              Уменьшите углеродный след вашей компании и внесите вклад в сохранение окружающей среды
-            </p>
-          </Card>
-          
-          <Card className="p-6 hover-scale">
-            <div className="mb-4 text-[#9b87f5]">
-              <Icon name="TrendingUp" size={48} />
-            </div>
-            <h3 className="text-xl font-bold mb-2">Экономия ресурсов</h3>
-            <p className="text-[#403E43]">
-              Снизьте потребление электроэнергии, воды и расходных материалов, оптимизируя затраты
-            </p>
-          </Card>
-          
-          <Card className="p-6 hover-scale">
-            <div className="mb-4 text-[#9b87f5]">
-              <Icon name="Users" size={48} />
-            </div>
-            <h3 className="text-xl font-bold mb-2">Здоровье сотрудников</h3>
-            <p className="text-[#403E43]">
-              Создайте комфортную атмосферу, которая положительно влияет на самочувствие и продуктивность команды
-            </p>
-          </Card>
+        {/* Stats Overview */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <StatCard 
+            title="Энергопотребление" 
+            value="286 кВт·ч" 
+            change="-12%" 
+            icon="Zap" 
+            trend="down" 
+          />
+          <StatCard 
+            title="Температура" 
+            value="22.5°C" 
+            change="+0.8°C" 
+            icon="Thermometer" 
+            trend="up" 
+          />
+          <StatCard 
+            title="CO₂" 
+            value="412 ppm" 
+            change="-22 ppm" 
+            icon="Wind" 
+            trend="down" 
+          />
+          <StatCard 
+            title="Экономия" 
+            value="12 450 ₽" 
+            change="+8%" 
+            icon="TrendingUp" 
+            trend="up" 
+          />
         </div>
-      </section>
-
-      {/* Featured solutions */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-[#1A1F2C]">
-            Наши решения
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="p-6 flex flex-col md:flex-row gap-4 hover-scale">
-              <div className="w-full md:w-1/3 bg-[#F2FCE2] rounded-md flex items-center justify-center p-4">
-                <Icon name="LightbulbOff" size={64} className="text-[#9b87f5]" />
-              </div>
-              <div className="w-full md:w-2/3">
-                <h3 className="text-xl font-bold mb-2">Энергосберегающие технологии</h3>
-                <p className="text-[#403E43] mb-3">
-                  Светодиодное освещение, умные датчики присутствия и системы управления энергопотреблением
-                </p>
-                <Button variant="outline" className="text-[#6E59A5]">Подробнее</Button>
+        
+        {/* Main Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left Column - Energy Consumption */}
+          <div className="lg:col-span-2">
+            <Card className="bg-white shadow-sm">
+              <div className="p-4">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                  <h3 className="text-lg font-medium text-[#212121]">Статистика энергопотребления</h3>
+                  <Tabs defaultValue="week">
+                    <TabsList className="bg-[#F0F4F8]">
+                      <TabsTrigger value="week">Неделя</TabsTrigger>
+                      <TabsTrigger value="month">Месяц</TabsTrigger>
+                    </TabsList>
+                  </Tabs>
+                </div>
+                
+                <div className="chart-container">
+                  <TabsContent value="week" className="h-full mt-0">
+                    <div className="flex items-center justify-center h-full bg-[#F0F4F8] rounded-lg">
+                      <div className="text-center">
+                        <Icon name="BarChart" size={48} className="mx-auto text-[#757575] mb-2" />
+                        <p className="text-[#757575]">График энергопотребления за неделю</p>
+                      </div>
+                    </div>
+                  </TabsContent>
+                  <TabsContent value="month" className="h-full mt-0">
+                    <div className="flex items-center justify-center h-full bg-[#F0F4F8] rounded-lg">
+                      <div className="text-center">
+                        <Icon name="BarChart" size={48} className="mx-auto text-[#757575] mb-2" />
+                        <p className="text-[#757575]">График энергопотребления за месяц</p>
+                      </div>
+                    </div>
+                  </TabsContent>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                  <div className="bg-[#F0F4F8] rounded-lg p-3">
+                    <p className="text-[#757575] text-sm">Офис 1</p>
+                    <div className="flex justify-between items-center mt-1">
+                      <p className="font-bold text-[#212121]">124 кВт·ч</p>
+                      <span className="text-green-500 text-sm flex items-center">
+                        <Icon name="TrendingDown" size={14} className="mr-1" />
+                        -8%
+                      </span>
+                    </div>
+                  </div>
+                  <div className="bg-[#F0F4F8] rounded-lg p-3">
+                    <p className="text-[#757575] text-sm">Офис 2</p>
+                    <div className="flex justify-between items-center mt-1">
+                      <p className="font-bold text-[#212121]">86 кВт·ч</p>
+                      <span className="text-green-500 text-sm flex items-center">
+                        <Icon name="TrendingDown" size={14} className="mr-1" />
+                        -15%
+                      </span>
+                    </div>
+                  </div>
+                  <div className="bg-[#F0F4F8] rounded-lg p-3">
+                    <p className="text-[#757575] text-sm">Офис 3</p>
+                    <div className="flex justify-between items-center mt-1">
+                      <p className="font-bold text-[#212121]">76 кВт·ч</p>
+                      <span className="text-red-500 text-sm flex items-center">
+                        <Icon name="TrendingUp" size={14} className="mr-1" />
+                        +2%
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </Card>
             
-            <Card className="p-6 flex flex-col md:flex-row gap-4 hover-scale">
-              <div className="w-full md:w-1/3 bg-[#F2FCE2] rounded-md flex items-center justify-center p-4">
-                <Icon name="Recycle" size={64} className="text-[#9b87f5]" />
-              </div>
-              <div className="w-full md:w-2/3">
-                <h3 className="text-xl font-bold mb-2">Системы переработки отходов</h3>
-                <p className="text-[#403E43] mb-3">
-                  Раздельный сбор мусора, переработка бумаги и пластика, компостирование органических отходов
-                </p>
-                <Button variant="outline" className="text-[#6E59A5]">Подробнее</Button>
+            {/* Quick Actions */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+              <Card className="bg-white shadow-sm">
+                <div className="p-4">
+                  <div className="flex items-center mb-4">
+                    <div className="h-8 w-8 rounded-full bg-[#F0F4F8] flex items-center justify-center text-[#388E3C] mr-3">
+                      <Icon name="FileText" size={16} />
+                    </div>
+                    <h3 className="text-[#212121] font-medium">Отчеты</h3>
+                  </div>
+                  <Button variant="outline" className="w-full border-[#4CAF50] text-[#4CAF50] hover:bg-[#4CAF50] hover:text-white">
+                    Сформировать отчет
+                  </Button>
+                </div>
+              </Card>
+              
+              <Card className="bg-white shadow-sm">
+                <div className="p-4">
+                  <div className="flex items-center mb-4">
+                    <div className="h-8 w-8 rounded-full bg-[#F0F4F8] flex items-center justify-center text-[#388E3C] mr-3">
+                      <Icon name="Settings" size={16} />
+                    </div>
+                    <h3 className="text-[#212121] font-medium">Управление</h3>
+                  </div>
+                  <Button variant="outline" className="w-full border-[#4CAF50] text-[#4CAF50] hover:bg-[#4CAF50] hover:text-white">
+                    Перейти к устройствам
+                  </Button>
+                </div>
+              </Card>
+            </div>
+          </div>
+          
+          {/* Right Column - Events */}
+          <div>
+            <EventLog events={mockEvents} />
+            
+            <Card className="bg-white shadow-sm mt-6">
+              <div className="p-4">
+                <h3 className="text-lg font-medium text-[#212121] mb-4">Советы по экономии</h3>
+                <div className="space-y-4">
+                  <div className="flex">
+                    <div className="mr-3 text-[#388E3C]">
+                      <Icon name="Lightbulb" size={20} />
+                    </div>
+                    <p className="text-sm text-[#212121]">Установите датчики движения для автоматического отключения света в неиспользуемых помещениях.</p>
+                  </div>
+                  <div className="flex">
+                    <div className="mr-3 text-[#388E3C]">
+                      <Icon name="Lightbulb" size={20} />
+                    </div>
+                    <p className="text-sm text-[#212121]">Используйте естественное освещение, разместив рабочие места ближе к окнам.</p>
+                  </div>
+                  <div className="flex">
+                    <div className="mr-3 text-[#388E3C]">
+                      <Icon name="Lightbulb" size={20} />
+                    </div>
+                    <p className="text-sm text-[#212121]">Оптимизируйте температуру кондиционирования: 23-25°C летом и 20-22°C зимой.</p>
+                  </div>
+                </div>
               </div>
             </Card>
           </div>
         </div>
-      </section>
-
-      {/* Call to action */}
-      <section className="py-16 bg-[#E5DEFF]">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6 text-[#1A1F2C]">
-            Готовы сделать ваш офис экологичным?
-          </h2>
-          <p className="text-lg text-[#403E43] max-w-2xl mx-auto mb-8">
-            Свяжитесь с нами для консультации или запишитесь на бесплатный аудит вашего текущего офисного пространства
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-[#9b87f5] hover:bg-[#7E69AB]">
-              Связаться с нами
-            </Button>
-            <Button variant="outline" className="border-[#9b87f5] text-[#6E59A5]">
-              Узнать больше о наших услугах
-            </Button>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   );
 };
